@@ -856,6 +856,7 @@
             if (body.getAttribute('data-theme') === 'dark') {
                 body.removeAttribute('data-theme');
                 button.textContent = '⏾';
+                button.style.fontSize = '1.5rem';
                 localStorage.setItem('theme', 'light');
             } else {
                 body.setAttribute('data-theme', 'dark');
