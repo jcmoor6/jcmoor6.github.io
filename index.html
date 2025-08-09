@@ -611,7 +611,7 @@
 </head>
 <body>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
-        🌙
+        ⏾
     </button>
 
     <div class="container">
@@ -860,6 +860,7 @@
             } else {
                 body.setAttribute('data-theme', 'dark');
                 button.textContent = '☀';
+                button.style.fontSize = '2rem';
                 localStorage.setItem('theme', 'dark');
             }
         }
@@ -887,7 +888,8 @@
             
             if (savedTheme === 'dark') {
                 document.body.setAttribute('data-theme', 'dark');
-                button.textContent = '☀️';
+                button.textContent = '☀';
+                button.style.fontSize = '2rem';
             }
         });
     </script>
