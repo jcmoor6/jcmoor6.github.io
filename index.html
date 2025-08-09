@@ -4,47 +4,892 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Name - Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --accent-color: #0066cc;
+            --border-color: #e0e0e0;
+            --hover-color: #f5f5f5;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a1a1a;
+            --text-color: #e0e0e0;
+            --accent-color: #66b3ff;
+            --border-color: #333333;
+            --hover-color: #2a2a2a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 2rem 0;
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+            border: 3px solid var(--border-color);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            opacity: 0.7;
+            margin-bottom: 2rem;
+        }
+
+        .bio {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: none;
+            border: 2px solid var(--border-color);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--hover-color);
+        }
+
+        .posts {
+            border-top: 1px solid var(--border-color);
+            padding-top: 2rem;
+        }
+
+        .post-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        .post-item:hover {
+            background-color: var(--hover-color);
+            padding-left: 1rem;
+            padding-right: 1rem;
+            border-radius: 8px;
+        }
+
+        .post-title {
+            flex: 1;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-right: 1rem;
+        }
+
+        .post-date {
+            font-size: 0.9rem;
+            opacity: 0.6;
+            white-space: nowrap;
+        }
+
+        .post-excerpt {
+            font-size: 0.95rem;
+            opacity: 0.7;
+            margin-top: 0.3rem;
+            line-height: 1.4;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            opacity: 1;
+            color: var(--accent-color);
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+
+            @media (max-width: 600px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .post-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .post-title {
+                margin-right: 0;
+                margin-bottom: 0.3rem;
+            }
+            
+            .theme-toggle {
+                top: 1rem;
+                right: 1rem;
+                width: 40px;
+                height: 40px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+
+            .main-nav {
+                gap: 0;
+                margin: 1rem 0 2rem 0;
+            }
+
+            .nav-btn {
+                padding: 0.8rem 1rem;
+                font-size: 0.9rem;
+                flex: 1;
+            }
+
+            .skills-list {
+                gap: 0.5rem;
+            }
+
+            .skill-tag {
+                font-size: 0.8rem;
+                padding: 0.3rem 0.8rem;
+            }
+
+            .publication-links {
+                gap: 0.5rem;
+            }
+
+            .publication-link {
+                font-size: 0.8rem;
+                padding: 0.2rem 0.6rem;
+            }
+
+            .resume-actions {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .resume-download, .resume-print {
+                width: 100%;
+                max-width: 200px;
+            }
+
+            .resume-item-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.2rem;
+            }
+
+            .skill-category {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Projects/Portfolio specific styles */
+        .project-grid {
+            display: grid;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .project-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-tech {
+            font-size: 0.85rem;
+            opacity: 0.6;
+            margin-bottom: 0.8rem;
+        }
+
+        .project-description {
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-link:hover {
+            opacity: 0.7;
+        }
+
+        /* Navigation Styles */
+        .main-nav {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            margin: 2rem 0 3rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            color: var(--text-color);
+            opacity: 0.6;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+            font-family: inherit;
+        }
+
+        .nav-btn:hover {
+            opacity: 0.8;
+        }
+
+        .nav-btn.active {
+            opacity: 1;
+            border-bottom-color: var(--accent-color);
+        }
+
+        /* Content Sections */
+        .content-section {
+            display: none;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* About Section Styles */
+        .about-content p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            opacity: 0.9;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .skill-tag {
+            background-color: var(--hover-color);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        /* Publications Styles */
+        .publications-list {
+            display: grid;
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .publication-item {
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .publication-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .publication-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .publication-authors {
+            font-size: 0.95rem;
+            margin-bottom: 0.4rem;
+            opacity: 0.8;
+        }
+
+        .publication-venue {
+            font-size: 0.9rem;
+            font-style: italic;
+            margin-bottom: 1rem;
+            opacity: 0.7;
+        }
+
+        .publication-description {
+            margin-bottom: 1.2rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .publication-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .publication-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 0.3rem 0.8rem;
+            border: 1px solid var(--accent-color);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .publication-link:hover {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        /* Resume Section Styles */
+        .resume-actions {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+
+        .resume-download, .resume-print {
+            padding: 0.7rem 1.5rem;
+            border: 2px solid var(--accent-color);
+            border-radius: 6px;
+            text-decoration: none;
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            background: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .resume-download:hover, .resume-print:hover {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .resume-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .resume-section {
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .resume-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .resume-section-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--accent-color);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .resume-section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+
+        .resume-item {
+            margin-bottom: 1.8rem;
+        }
+
+        .resume-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .resume-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.3rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .resume-item-header h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .resume-date {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .resume-institution {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+            font-style: italic;
+        }
+
+        .resume-details {
+            font-size: 0.95rem;
+            opacity: 0.7;
+            margin-bottom: 0.8rem;
+        }
+
+        .resume-bullets {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .resume-bullets li {
+            position: relative;
+            padding-left: 1.2rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+            opacity: 0.9;
+        }
+
+        .resume-bullets li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .resume-skills {
+            display: grid;
+            gap: 0.8rem;
+        }
+
+        .skill-category {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .skill-category strong {
+            color: var(--accent-color);
+            margin-right: 0.5rem;
+        }
+
+        /* Print styles */
+        @media print {
+            .theme-toggle, .main-nav, .resume-actions {
+                display: none !important;
+            }
+            
+            .container {
+                margin: 0;
+                padding: 1rem;
+                max-width: none;
+            }
+            
+            header {
+                margin-bottom: 2rem;
+                page-break-after: avoid;
+            }
+            
+            .resume-section {
+                page-break-inside: avoid;
+                margin-bottom: 1.5rem;
+            }
+            
+            .resume-section-title {
+                font-size: 1.1rem;
+                margin-bottom: 1rem;
+            }
+            
+            body {
+                font-size: 12pt;
+                line-height: 1.4;
+                color: #000 !important;
+                background: white !important;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+        🌙
+    </button>
+
+    <div class="container">
+        <header>
+            <!-- Uncomment and add your photo -->
+            <!-- <img src="your-photo.jpg" alt="Your Name" class="profile-img"> -->
+            <h1>Your Name</h1>
+            <p class="subtitle">Your Professional Title</p>
+            <p class="bio">
+                Write a brief, engaging bio about yourself. Keep it professional yet personal. 
+                Mention your interests, expertise, and what drives you in your field.
+            </p>
+            <div class="social-links">
+                <a href="mailto:your.email@example.com" class="social-link">Email</a>
+                <a href="https://linkedin.com/in/yourprofile" class="social-link">LinkedIn</a>
+                <a href="https://github.com/yourusername" class="social-link">GitHub</a>
+            </div>
+        </header>
+
+        <nav class="main-nav">
+            <button class="nav-btn active" onclick="showSection('about')">About</button>
+            <button class="nav-btn" onclick="showSection('projects')">Projects</button>
+            <button class="nav-btn" onclick="showSection('publications')">Publications</button>
+            <button class="nav-btn" onclick="showSection('resume')">Resume</button>
         </nav>
-    </header>
 
-    <main>
-        <section id="hero">
-            <h1>Hello! Welcome to my portfolio</h1>
-            <p>Your professional tagline or brief description</p>
-        </section>
-
-        <section id="about">
-            <h2>About Me</h2>
-            <p>Write about your background, education, and interests here.</p>
-        </section>
-
-        <section id="projects">
-            <h2>Projects</h2>
-            <div class="project-grid">
-                <div class="project-card">
-                    <h3>Project 1</h3>
-                    <p>Description of your project</p>
-                    <a href="#">View Project</a>
+        <!-- About Section -->
+        <section id="about-section" class="content-section active">
+            <h2 class="section-title">About</h2>
+            <div class="about-content">
+                <p>
+                    Expand on your background here. Talk about your education, professional experience, 
+                    and what drives your passion in your field. This is where you can go into more detail 
+                    about your expertise and interests.
+                </p>
+                <p>
+                    You can also mention your current role, previous experiences, or any notable achievements. 
+                    Keep it professional but let your personality shine through.
+                </p>
+                <h3 style="margin-top: 2rem; margin-bottom: 1rem; opacity: 0.8;">Skills & Expertise</h3>
+                <div class="skills-list">
+                    <span class="skill-tag">Your Skill 1</span>
+                    <span class="skill-tag">Your Skill 2</span>
+                    <span class="skill-tag">Your Skill 3</span>
+                    <span class="skill-tag">Your Skill 4</span>
+                    <span class="skill-tag">Your Skill 5</span>
                 </div>
-                <!-- Add more project cards -->
             </div>
         </section>
 
-        <section id="contact">
-            <h2>Contact</h2>
-            <p>Email: your.email@example.com</p>
-            <p>LinkedIn: <a href="#">Your LinkedIn Profile</a></p>
+        <!-- Projects Section -->
+        <section id="projects-section" class="content-section">
+            <h2 class="section-title">Projects</h2>
+            
+            <div class="project-grid">
+                <article class="project-card">
+                    <h3 class="project-title">Project Name 1</h3>
+                    <p class="project-tech">React, Node.js, MongoDB</p>
+                    <p class="project-description">
+                        Brief description of what this project does and the problem it solves. 
+                        Keep it concise but informative.
+                    </p>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Live Demo</a>
+                        <a href="#" class="project-link">GitHub</a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <h3 class="project-title">Project Name 2</h3>
+                    <p class="project-tech">Python, Django, PostgreSQL</p>
+                    <p class="project-description">
+                        Another project description. Focus on the impact and technologies used.
+                        Mention any interesting challenges you solved.
+                    </p>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Live Demo</a>
+                        <a href="#" class="project-link">GitHub</a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <h3 class="project-title">Project Name 3</h3>
+                    <p class="project-tech">Vue.js, Firebase, CSS</p>
+                    <p class="project-description">
+                        Third project description. Show variety in your skills and interests.
+                        Highlight what makes this project unique.
+                    </p>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Live Demo</a>
+                        <a href="#" class="project-link">GitHub</a>
+                    </div>
+                </article>
+            </div>
         </section>
-    </main>
+
+        <!-- Resume Section -->
+        <section id="resume-section" class="content-section">
+            <h2 class="section-title">Resume</h2>
+            
+            <div class="resume-actions">
+                <a href="your-resume.pdf" class="resume-download" download>Download PDF</a>
+                <button class="resume-print" onclick="window.print()">Print</button>
+            </div>
+
+            <div class="resume-content">
+                <!-- Education -->
+                <div class="resume-section">
+                    <h3 class="resume-section-title">Education</h3>
+                    <div class="resume-item">
+                        <div class="resume-item-header">
+                            <h4>Your Degree Title</h4>
+                            <span class="resume-date">Year - Year</span>
+                        </div>
+                        <p class="resume-institution">University Name, Location</p>
+                        <p class="resume-details">GPA: X.X/4.0 | Relevant Coursework: Course 1, Course 2, Course 3</p>
+                    </div>
+                </div>
+
+                <!-- Experience -->
+                <div class="resume-section">
+                    <h3 class="resume-section-title">Experience</h3>
+                    
+                    <div class="resume-item">
+                        <div class="resume-item-header">
+                            <h4>Your Job Title</h4>
+                            <span class="resume-date">Month Year - Present</span>
+                        </div>
+                        <p class="resume-institution">Company Name, Location</p>
+                        <ul class="resume-bullets">
+                            <li>Key achievement or responsibility using action verbs</li>
+                            <li>Quantified result showing impact (increased efficiency by X%)</li>
+                            <li>Technical skills or tools used in this role</li>
+                        </ul>
+                    </div>
+
+                    <div class="resume-item">
+                        <div class="resume-item-header">
+                            <h4>Previous Job Title</h4>
+                            <span class="resume-date">Month Year - Month Year</span>
+                        </div>
+                        <p class="resume-institution">Previous Company Name, Location</p>
+                        <ul class="resume-bullets">
+                            <li>Another key achievement with specific metrics</li>
+                            <li>Leadership or collaboration experience</li>
+                            <li>Problem-solving example with results</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Skills -->
+                <div class="resume-section">
+                    <h3 class="resume-section-title">Technical Skills</h3>
+                    <div class="resume-skills">
+                        <div class="skill-category">
+                            <strong>Programming Languages:</strong> Python, JavaScript, Java, R
+                        </div>
+                        <div class="skill-category">
+                            <strong>Frameworks & Libraries:</strong> React, Node.js, Django, TensorFlow
+                        </div>
+                        <div class="skill-category">
+                            <strong>Tools & Technologies:</strong> Git, Docker, AWS, PostgreSQL
+                        </div>
+                        <div class="skill-category">
+                            <strong>Other:</strong> Data Analysis, Machine Learning, Project Management
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Awards/Certifications -->
+                <div class="resume-section">
+                    <h3 class="resume-section-title">Awards & Certifications</h3>
+                    <div class="resume-item">
+                        <div class="resume-item-header">
+                            <h4>Certification or Award Name</h4>
+                            <span class="resume-date">Year</span>
+                        </div>
+                        <p class="resume-institution">Issuing Organization</p>
+                        <p class="resume-details">Brief description if relevant</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Publications Section -->
+        <section id="publications-section" class="content-section">
+            <h2 class="section-title">Publications</h2>
+            
+            <div class="publications-list">
+                <article class="publication-item">
+                    <h3 class="publication-title">Your Research Paper Title Here</h3>
+                    <p class="publication-authors">Author 1, <strong>Your Name</strong>, Author 3</p>
+                    <p class="publication-venue">Journal Name, Volume(Issue), Pages, Year</p>
+                    <p class="publication-description">
+                        Brief description of the research, methodology, and key findings. 
+                        What problem did this work address and what was the impact?
+                    </p>
+                    <div class="publication-links">
+                        <a href="#" class="publication-link">PDF</a>
+                        <a href="#" class="publication-link">DOI</a>
+                        <a href="#" class="publication-link">Cite</a>
+                    </div>
+                </article>
+
+                <article class="publication-item">
+                    <h3 class="publication-title">Conference Paper or Presentation</h3>
+                    <p class="publication-authors"><strong>Your Name</strong>, Co-author Name</p>
+                    <p class="publication-venue">Conference Name, Location, Year</p>
+                    <p class="publication-description">
+                        Description of the work presented at the conference. Include any awards 
+                        or notable recognition received.
+                    </p>
+                    <div class="publication-links">
+                        <a href="#" class="publication-link">Slides</a>
+                        <a href="#" class="publication-link">Video</a>
+                        <a href="#" class="publication-link">Abstract</a>
+                    </div>
+                </article>
+
+                <article class="publication-item">
+                    <h3 class="publication-title">Technical Report or White Paper</h3>
+                    <p class="publication-authors">Multiple Authors including <strong>Your Name</strong></p>
+                    <p class="publication-venue">Organization Name, Report Number, Year</p>
+                    <p class="publication-description">
+                        Summary of technical work, analysis, or industry insights. 
+                        What practical applications or implications does this work have?
+                    </p>
+                    <div class="publication-links">
+                        <a href="#" class="publication-link">Download</a>
+                        <a href="#" class="publication-link">Summary</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const button = document.querySelector('.theme-toggle');
+            
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                button.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                button.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        function showSection(sectionName) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => section.classList.remove('active'));
+            
+            // Remove active class from all nav buttons
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Show selected section
+            document.getElementById(sectionName + '-section').classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        // Load saved theme and initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            const button = document.querySelector('.theme-toggle');
+            
+            if (savedTheme === 'dark') {
+                document.body.setAttribute('data-theme', 'dark');
+                button.textContent = '☀️';
+            }
+        });
+    </script>
 </body>
 </html>
