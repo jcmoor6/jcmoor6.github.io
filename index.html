@@ -44,15 +44,13 @@
 
         header {
             text-align: center;
-            margin-bottom: 4rem;
-            padding: 2rem 0;
+            margin-bottom: 3rem;
         }
 
         h1 {
             font-size: 2.5rem;
             font-weight: 300;
             margin-bottom: 0.5rem;
-            letter-spacing: -0.02em;
         }
 
         .subtitle {
@@ -61,14 +59,8 @@
             margin-bottom: 2rem;
         }
 
-        /* --- OUTLINE BUTTON STYLES --- */
-        .project-links {
-            display: flex;
-            gap: 15px;
-            margin: 1.5rem 0;
-        }
-
-        .outline-button {
+        /* --- BUTTON STYLES --- */
+        .outline-button, .resume-download, .publication-link {
             padding: 10px 20px;
             color: var(--accent-color);
             text-decoration: none;
@@ -79,32 +71,33 @@
             font-weight: 500;
             font-size: 0.9rem;
             transition: all 0.3s ease;
-            background-color: transparent;
+            background: transparent;
+            font-family: inherit;
         }
 
-        .outline-button:hover {
+        .outline-button:hover, .resume-download:hover, .publication-link:hover {
             background-color: var(--accent-color);
             color: var(--bg-color) !important;
         }
 
-        /* Navigation Styles */
+        /* Navigation */
         .main-nav {
             display: flex;
             justify-content: center;
-            margin: 2rem 0 3rem 0;
+            margin-bottom: 3rem;
             border-bottom: 1px solid var(--border-color);
         }
 
         .nav-btn {
             background: none;
             border: none;
-            padding: 1rem 2rem;
+            padding: 1rem 1.5rem;
             font-size: 1rem;
             color: var(--text-color);
             opacity: 0.6;
             cursor: pointer;
-            transition: all 0.3s ease;
             border-bottom: 2px solid transparent;
+            font-family: inherit;
         }
 
         .nav-btn.active {
@@ -112,7 +105,7 @@
             border-bottom-color: var(--accent-color);
         }
 
-        /* Content Sections */
+        /* Sections */
         .content-section {
             display: none;
             animation: fadeIn 0.3s ease-in;
@@ -127,22 +120,24 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .project-card {
+        .project-card, .publication-item {
             padding: 1.5rem 0;
             border-bottom: 1px solid var(--border-color);
         }
 
-        .project-description {
-            opacity: 0.8;
-            margin-bottom: 1rem;
-            white-space: pre-wrap; /* Maintains spacing from your doc */
-        }
-
-        .map-container iframe {
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            margin-top: 1rem;
-        }
+        /* Resume Styles */
+        .resume-section { margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border-color); }
+        .resume-section:last-child { border-bottom: none; }
+        .resume-section-title { font-size: 1.3rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--accent-color); }
+        .resume-item { margin-bottom: 1.8rem; }
+        .resume-item-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 1rem; }
+        .resume-date { font-size: 0.9rem; opacity: 0.7; }
+        .resume-institution { font-style: italic; margin-bottom: 0.5rem; opacity: 0.8; }
+        .resume-bullets { list-style: none; padding-left: 0; }
+        .resume-bullets li { position: relative; padding-left: 1.2rem; margin-bottom: 0.5rem; }
+        .resume-bullets li::before { content: '•'; position: absolute; left: 0; color: var(--accent-color); font-weight: bold; }
+        .skill-category { margin-bottom: 0.8rem; }
+        .skill-category strong { color: var(--accent-color); margin-right: 0.5rem; }
 
         .theme-toggle {
             position: fixed;
@@ -151,31 +146,19 @@
             background: none;
             border: 2px solid var(--border-color);
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             color: var(--text-color);
+            font-size: 1.2rem;
         }
 
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .social-link {
-            color: var(--text-color);
-            text-decoration: none;
-            opacity: 0.7;
-        }
+        .social-links { display: flex; justify-content: center; gap: 2rem; margin-top: 1rem; }
+        .social-link { color: var(--text-color); text-decoration: none; opacity: 0.7; font-size: 0.9rem; }
     </style>
 </head>
 <body>
-    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">⏾</button>
+    <button class="theme-toggle" onclick="toggleTheme()">⏾</button>
 
     <div class="container">
         <header>
@@ -191,90 +174,160 @@
         <nav class="main-nav">
             <button class="nav-btn active" onclick="showSection('about')">About</button>
             <button class="nav-btn" onclick="showSection('projects')">Projects</button>
+            <button class="nav-btn" onclick="showSection('maps')">Maps</button>
             <button class="nav-btn" onclick="showSection('publications')">Publications</button>
             <button class="nav-btn" onclick="showSection('resume')">Resume</button>
         </nav>
 
         <section id="about-section" class="content-section active">
-            <h2 style="margin-bottom: 1.5rem;">About</h2>
-            <p>
+            <h2 class="section-title">About</h2>
+            <p style="margin-top:1rem;">
                 Supporting NOAA as a Junior Scientist, I specialize in the processing and 
                 verification of SAR acquisitions over active hurricanes. I bring a strong technical focus 
                 to the role by writing Python scripts to automate analytical processing chains, 
                 while also leveraging ArcGIS Pro to translate raw data into professional-grade 
-                spatial visualizations. 
+                spatial visualizations.
             </p>
         </section>
 
         <section id="projects-section" class="content-section">
-            <h2 style="margin-bottom: 1.5rem;">Projects</h2>
-            
+            <h2 class="section-title">Projects</h2>
             <article class="project-card">
-                <h3 class="project-title">Georgia Coast Atlas: Wolf and Egg Islands</h3>
-                <p class="project-description">
-                    This undergraduate research project was a collaboration with the Emory University Center for Digital Scholarship (ECDS) to obtain data and quantify shoreline change on a Georgia barrier island called Wolf Island. 
-                    This project is featured on the Georgia Coast Atlas website, has been presented at two conferences, and was featured in a news article. Below are the website links:
-                    
-                    Geological Society of America Conference Links:
-                    
-                    Poster Title: Shifting Shorelines on Wolf and Egg Islands, Georgia, USA: A Study of Change Since 1953 Year and Location: April 2018, Knoxville, TN Abstract Link: https://gsa.confex.com/gsa/2018SE/meetingapp.cgi/Paper/312844
-                    Poster Title: Geological, Ecological, and Human Histories of Wolf and Egg Islands (Georgia): Integrating Undergraduate Research with Public Outreach through the Georgia Coast Atlas Year and Location: March 2019, Charleston, SC Abstract Link: https://gsa.confex.com/gsa/2019SE/meetingapp.cgi/Paper/327300
-                </p>
-                
-                <div class="project-links">
+                <h3>Georgia Coast Atlas: Wolf and Egg Islands</h3>
+                <p style="margin: 1rem 0;">This undergraduate research project was a collaboration with the Emory University Center for Digital Scholarship (ECDS) to obtain data and quantify shoreline change on a Georgia barrier island called Wolf Island. This project is featured on the Georgia Coast Atlas website, has been presented at two conferences, and was featured in a news article.</p>
+                <div class="project-links" style="display:flex; gap:15px;">
                     <a href="https://georgiacoastatlas.org/places/wolf-island" class="outline-button">Georgia Coast Atlas Website</a>
                     <a href="https://news.emory.edu/features/2020/07/georgia-coast-atlas/index.html" class="outline-button">News Article</a>
                 </div>
-
-                <div class="map-container">
-                    <iframe width="100%" height="350" frameborder="0" scrolling="no" src="https://www.arcgis.com/apps/Embed/index.html?webmap=2c5ed3cf2cdc433797b4b9276b998171&zoom=true&scale=true&legend=true&theme=light"></iframe>
-                </div>
-            </article>
-
-            <article class="project-card">
-                <h3 class="project-title">Project Name 3</h3>
-                <p class="project-tech">Vue.js, Firebase, CSS</p>
-                <p class="project-description">
-                    Third project description. Show variety in your skills and interests.
-                    Highlight what makes this project unique.
-                </p>
-                <div class="project-links">
-                    <a href="#" class="outline-button">Live Demo</a>
-                    <a href="#" class="outline-button">GitHub</a>
+                <div style="margin-top:2rem;">
+                    <iframe width="100%" height="450" frameborder="0" scrolling="no" src="https://www.arcgis.com/apps/Embed/index.html?webmap=2c5ed3cf2cdc433797b4b9276b998171&extent=-81.3403,31.3184,-81.2456,31.3717&zoom=true&previewImage=false&scale=true&legend=true&basemap_gallery=true&disable_scroll=true&theme=light"></iframe>
                 </div>
             </article>
         </section>
 
-        </div>
+        <section id="maps-section" class="content-section">
+            <h2 class="section-title">Maps</h2>
+        </section>
+
+        <section id="publications-section" class="content-section">
+            <h2 class="section-title">Publications</h2>
+            <article class="publication-item">
+                <h3 class="publication-title">Observing Tropical Cyclone Morphology Using RADARSAT-2 and Sentinel-1 Synthetic Aperture Radar Images</h3>
+                <p style="opacity: 0.8; margin: 0.5rem 0;">Moore Torres, J.C., Jackson, C. R., Ruff, T. W., Helfrich, S. R., Romeiser, R.</p>
+                <p style="font-style: italic; opacity: 0.7;">Journal of Atmospheric and Oceanic Technology, 2023</p>
+                <p style="margin-top:1rem;">Conducted classification of tropical cyclone eye and morphology using cross-polarized SAR imagery and observed how these may affect storm intensity.</p>
+                <div class="publication-links">
+                    <a href="https://doi.org/10.1175/JTECH-D-22-0053.1" class="publication-link">DOI</a>
+                </div>
+            </article>
+        </section>
+
+        <section id="resume-section" class="content-section">
+            <h2 class="section-title">Resume</h2>
+            <div class="resume-actions">
+                <a href="https://drive.google.com/file/d/19QYLQRsCyZmTUCb5w1mjogp4biJJbntg/view?usp=sharing" class="resume-download" download>Download PDF</a>
+            </div>
+
+            <div class="resume-content">
+                <div class="resume-section">
+                    <h3 class="resume-section-title">Education</h3>
+                    <div class="resume-item">
+                        <div class="resume-item-header">
+                            <h4>Master of Professional Science (MPS) in Applied Remote Sensing</h4>
+                            <span class="resume-date">2019 - 2020</span>
+                        </div>
+                        <p class="resume-institution">University of Miami - Rosenstiel School of Marine, Earth, and Atmospheric Science, Miami, FL</p>
+                    </div>
+                    <div class="resume-item">
+                        <div class="resume-item-header">
+                            <h4>Bachelor of Science (BS) in Environmental Sciences</h4>
+                            <span class="resume-date">2015 - 2019</span>
+                        </div>
+                        <p class="resume-institution">Emory University - College of Arts and Sciences, Atlanta, GA</p>
+                    </div>
+                </div>
+
+                <div class="resume-section">
+                    <h3 class="resume-section-title">Experience</h3>
+                    <div class="resume-item">
+                        <div class="resume-item-header">
+                            <h4>Jr. Ocean Scientist (Contractor)</h4>
+                            <span class="resume-date">October 2020 - Present</span>
+                        </div>
+                        <p class="resume-institution">Global Science and Technology, Inc. / NOAA, Greenbelt, MD</p>
+                        <ul class="resume-bullets">
+                            <li>Mission Operations: Create imagery acquisition plans for tropical cyclones and flood events, optimizing RS2 acquisitions and providing real-time updates to meteorologists</li>
+                            <li>Automation: Develop Python scripts to trigger flood imagery processing workflows, improving data availability for storm and flood analysis</li>
+                            <li>SAR Analysis: Perform detailed morphological and classification analysis of archived tropical cyclone SAR imagery for operational decision support</li>
+                            <li>QA/QC: Automate comparison plots in Python to validate SAR wind data against ancillary datasets and collect/validate buoy data to assess measurement accuracy</li>
+                            <li>Mapping: Generate and edit KML files of satellite swaths and acquisition metadata for use in mapping and analysis</li>
+                            <li>Web Infrastructure: Enhance web functionality by editing PHP/HTML code to update tropical cyclone, surfactant contrast ratio, and invest pages on NOAA’s SAR Winds page</li>
+                        </ul>
+                    </div>
+
+                    <div class="resume-item">
+                        <div class="resume-item-header">
+                            <h4>Graduate Teaching Assistant: Introduction to Marine GIS</h4>
+                            <span class="resume-date">January 2020 - June 2020</span>
+                        </div>
+                        <p class="resume-institution">University of Miami, Miami, FL</p>
+                        <ul class="resume-bullets">
+                            <li>Lead graduate-level lab exercises on vector and raster data analysis, spatial statistics, and map making with ArcGIS Pro</li>
+                        </ul>
+                    </div>
+
+                    <div class="resume-item">
+                        <div class="resume-item-header">
+                            <h4>GIS Intern</h4>
+                            <span class="resume-date">September 2018 - May 2019</span>
+                        </div>
+                        <p class="resume-institution">Emory Center for Digital Scholarship, Atlanta, GA</p>
+                        <ul class="resume-bullets">
+                            <li>Conducted research on coastal Georgia towns to be published within the Georgia Coast Atlas website</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="resume-section">
+                    <h3 class="resume-section-title">Technical Skills</h3>
+                    <div class="resume-skills">
+                        <div class="skill-category"><strong>Programming Languages:</strong> Beginner: R, XML, PHP, HTML, SQL; Intermediate: Python, bash shell scripting, IDL</div>
+                        <div class="skill-category"><strong>Frameworks & Libraries:</strong> Beginner: pytorch; Intermediate: arcpy, geopandas, shapely, matplotlib, json</div>
+                        <div class="skill-category"><strong>Tools & Technologies:</strong> Intermediate: ArcGIS Pro, ArcMap, ArcGIS Online and StoryMaps, Google Earth</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 
     <script>
         function toggleTheme() {
             const body = document.body;
-            const button = document.querySelector('.theme-toggle');
+            const btn = document.querySelector('.theme-toggle');
             if (body.getAttribute('data-theme') === 'dark') {
                 body.removeAttribute('data-theme');
-                button.textContent = '⏾';
+                btn.textContent = '⏾';
                 localStorage.setItem('theme', 'light');
             } else {
                 body.setAttribute('data-theme', 'dark');
-                button.textContent = '☀';
+                btn.textContent = '☀';
                 localStorage.setItem('theme', 'dark');
             }
         }
 
-        function showSection(sectionName) {
+        function showSection(name) {
             document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById(sectionName + '-section').classList.add('active');
+            document.getElementById(name + '-section').classList.add('active');
             event.currentTarget.classList.add('active');
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
+        window.onload = () => {
             if (localStorage.getItem('theme') === 'dark') {
                 document.body.setAttribute('data-theme', 'dark');
                 document.querySelector('.theme-toggle').textContent = '☀';
             }
-        });
+        };
     </script>
 </body>
 </html>
