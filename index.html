@@ -609,26 +609,29 @@
             }
 
             /* Button dimensions and appearance */
-            .round-outline-btn {
-              width: 100px; /* Set a specific width */
-              height: 100px; /* Set the same height for a circle */
-              padding: 10px;
-              text-align: center;
-              text-decoration: none;
-              display: inline-block;
-              font-size: 16px;
-              cursor: pointer; /* Changes cursor to a pointer on hover */
-              background-color: white; /* White background for an "outline" look */
-              color: #04AA6D; /* Text color matching the border */
-            
-              /* Create the round outline */
-              border: 2px solid #04AA6D; /* Defines the outline */
-              border-radius: 50%; /* Makes the button perfectly circular */
+             .project-links {
+                display: flex;
+                gap: 15px;
+                margin-top: 20px;
             }
             
-            .round-outline-btn:hover {
-              background-color: #04AA6D; /* Changes background on hover */
-              color: white; /* Changes text color on hover */
+            .outline-button {
+                padding: 10px 20px;
+                color: #FFFFFF; 
+                text-decoration: none;
+                display: inline-block;
+                cursor: pointer;
+                border-radius: 5px;
+                outline: 2px solid #003366;
+                font-weight: 600;
+                font-size: 0.9rem;
+                transition: all 0.3s ease;
+            }
+            
+            /* Optional: Adding a hover effect to make it feel interactive */
+            .outline-button:hover {
+                background-color: #FFFFFF;
+                color: black;
             }
         }
     </style>
@@ -703,8 +706,8 @@
                         Poster Title: Geological, Ecological, and Human Histories of Wolf and Egg Islands (Georgia): Integrating Undergraduate Research with Public Outreach through the Georgia Coast Atlas Year and Location: March 2019, Charleston, SC Abstract Link: https://gsa.confex.com/gsa/2019SE/meetingapp.cgi/Paper/327300
                     </p>
                     <div class="project-links">
-                        <button class="round-outline-btn"><a href="https://georgiacoastatlas.org/places/wolf-island" class="project-link">Georgia Coast Atlas Website</a></button>
-                        <button class="round-outline-btn"><a href="https://news.emory.edu/features/2020/07/georgia-coast-atlas/index.html" class="project-link">News Article</a></button>
+                        <button class="outline-button"><a href="https://georgiacoastatlas.org/places/wolf-island" class="project-link">Georgia Coast Atlas Website</a></button>
+                        <button class="outline-button"><a href="https://news.emory.edu/features/2020/07/georgia-coast-atlas/index.html" class="project-link">News Article</a></button>
                     </div>
                     <div class="map-container" style="margin-bottom: 15px;">
                         <iframe 
