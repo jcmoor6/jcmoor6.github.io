@@ -5,6 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jessie C. Moore Torres - Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        function openLightbox(src) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            
+            lightboxImg.src = src;
+            lightbox.classList.add('active');
+        }
+        
+        // Optional: Close lightbox when 'Esc' key is pressed
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.getElementById('lightbox').classList.remove('active');
+            }
+        });
+    </script>
     <style>
         :root {
             --bg-color: #ffffff;
@@ -140,6 +156,32 @@
             opacity: 0.9;
         }
 
+        /* Lightbox/Gallery Overlay */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+        }
+        
+        .lightbox.active {
+            display: flex;
+        }
+        
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border: 2px solid white;
+            border-radius: 4px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
         .nav-btn {
             background: none;
             border: none;
@@ -328,12 +370,16 @@
                     </p>
                     <img src="images/Aquaculture_Map.png" alt="Aquaculture Labs in Peru" class="map-image">
                 </div>
-        
+                        
                 <div class="map-item">
                     <p class="map-caption">
                         <b>Goshawk Nests According to Lease Number in Tongass National Forest</b>
                     </p>
                     <img src="images/Tongass_Map.png" alt="Tongass National Forest" class="map-image">
+                </div>
+
+                <div id="lightbox" class="lightbox" onclick="this.classList.remove('active')">
+                    <img id="lightbox-img" src="" alt="Enlarged Map">
                 </div>
         
             </div>
