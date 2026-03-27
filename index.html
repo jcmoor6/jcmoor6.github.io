@@ -61,11 +61,11 @@
             margin-bottom: 2rem;
         }
 
-        /* --- PROJECT LINK BUTTON STYLES --- */
+        /* --- OUTLINE BUTTON STYLES --- */
         .project-links {
             display: flex;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
+            gap: 15px;
+            margin: 1.5rem 0;
         }
 
         .outline-button {
@@ -75,7 +75,7 @@
             display: inline-block;
             cursor: pointer;
             border-radius: 5px;
-            border: 2px solid var(--accent-color); /* Used border for better radius support */
+            border: 2px solid var(--accent-color);
             font-weight: 500;
             font-size: 0.9rem;
             transition: all 0.3s ease;
@@ -128,159 +128,4 @@
         }
 
         .project-card {
-            padding: 1.5rem 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .map-container iframe {
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            margin-top: 1rem;
-        }
-
-        .theme-toggle {
-            position: fixed;
-            top: 2rem;
-            right: 2rem;
-            background: none;
-            border: 2px solid var(--border-color);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-color);
-        }
-
-        /* Resume Specific Styles */
-        .resume-bullets {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .resume-bullets li {
-            position: relative;
-            padding-left: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .resume-bullets li::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            color: var(--accent-color);
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .social-link {
-            color: var(--text-color);
-            text-decoration: none;
-            opacity: 0.7;
-        }
-    </style>
-</head>
-<body>
-    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">⏾</button>
-
-    <div class="container">
-        <header>
-            <h1>Jessie C. Moore Torres</h1>
-            <p class="subtitle">Geospatial & Remote Sensing Scientist</p>
-            <div class="social-links">
-                <a href="mailto:jcmoor6@gmail.com" class="social-link"><i class="fa-solid fa-envelope"></i> Email</a>
-                <a href="https://linkedin.com/in/jessiemooretorres/" class="social-link"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-                <a href="https://github.com/jcmoor6" class="social-link"><i class="fa-brands fa-github"></i> GitHub</a>
-            </div>
-        </header>
-
-        <nav class="main-nav">
-            <button class="nav-btn active" onclick="showSection('about')">About</button>
-            <button class="nav-btn" onclick="showSection('projects')">Projects</button>
-            <button class="nav-btn" onclick="showSection('publications')">Publications</button>
-            <button class="nav-btn" onclick="showSection('resume')">Resume</button>
-        </nav>
-
-        <section id="about-section" class="content-section active">
-            <h2 style="margin-bottom: 1.5rem;">About</h2>
-            <p>Supporting NOAA as a Junior Scientist, I specialize in <strong>Synthetic Aperture Radar (SAR)</strong> analysis. I automate complex analytical chains using Python and ArcPy, translating raw imagery into mission-critical spatial visualizations.</p>
-        </section>
-
-        <section id="projects-section" class="content-section">
-            <h2 style="margin-bottom: 1.5rem;">Projects</h2>
-            <article class="project-card">
-                <h3 style="margin-bottom: 0.5rem;">Georgia Coast Atlas: Wolf and Egg Islands</h3>
-                <p style="margin-bottom: 1rem; opacity: 0.8;">Quantifying shoreline change using georeferenced satellite imagery (1953–2015).</p>
-                
-                <div class="project-links">
-                    <a href="https://georgiacoastatlas.org/places/wolf-island" class="outline-button">Website</a>
-                    <a href="https://news.emory.edu/features/2020/07/georgia-coast-atlas/index.html" class="outline-button">News Article</a>
-                </div>
-
-                <div class="map-container">
-                    <iframe width="100%" height="350" frameborder="0" scrolling="no" src="https://www.arcgis.com/apps/Embed/index.html?webmap=2c5ed3cf2cdc433797b4b9276b998171&zoom=true&scale=true&legend=true&theme=light"></iframe>
-                </div>
-            </article>
-        </section>
-
-        <section id="resume-section" class="content-section">
-            <h2 style="margin-bottom: 1.5rem;">Professional Experience</h2>
-            <div class="resume-item">
-                <h4 style="color: var(--accent-color);">Jr. Ocean Scientist (Contractor) | NOAA</h4>
-                <p style="font-style: italic; margin-bottom: 0.5rem;">Oct 2020 - Present</p>
-                <ul class="resume-bullets">
-                    <li><strong>Mission Operations:</strong> Create acquisition plans for tropical cyclones, providing real-time updates to meteorologists.</li>
-                    <li><strong>Geospatial Automation:</strong> Develop Python scripts and ArcPy tools to trigger automated flood imagery processing workflows.</li>
-                    <li><strong>QA/QC:</strong> Validate SAR wind data against ancillary datasets and collect buoy data for measurement accuracy.</li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="publications-section" class="content-section">
-            <h2 style="margin-bottom: 1.5rem;">Publications</h2>
-            <article class="project-card">
-                <h3>Observing Tropical Cyclone Morphology Using SAR</h3>
-                <p style="font-style: italic; margin-bottom: 0.5rem;">Journal of Atmospheric and Oceanic Technology (2023)</p>
-                <a href="https://doi.org/10.1175/JTECH-D-22-0053.1" class="outline-button">Read Paper</a>
-            </article>
-        </section>
-    </div>
-
-    <script>
-        function toggleTheme() {
-            const body = document.body;
-            const button = document.querySelector('.theme-toggle');
-            if (body.getAttribute('data-theme') === 'dark') {
-                body.removeAttribute('data-theme');
-                button.textContent = '⏾';
-                localStorage.setItem('theme', 'light');
-            } else {
-                body.setAttribute('data-theme', 'dark');
-                button.textContent = '☀';
-                localStorage.setItem('theme', 'dark');
-            }
-        }
-
-        function showSection(sectionName) {
-            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
-            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById(sectionName + '-section').classList.add('active');
-            event.currentTarget.classList.add('active');
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            if (localStorage.getItem('theme') === 'dark') {
-                document.body.setAttribute('data-theme', 'dark');
-                document.querySelector('.theme-toggle').textContent = '☀';
-            }
-        });
-    </script>
-</body>
-</html>
+            padding: 1.5rem
