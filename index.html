@@ -276,10 +276,10 @@
             height: 100%;
             object-fit: cover; /* Ensures video fills the screen */
             z-index: -1; /* Puts it behind everything */
-            opacity: 0.6; /* Slight transparency so it's not distracting */
+            /*opacity: 0.6; /* Slight transparency so it's not distracting */
         }
         
-        /* Optional: Add a dark overlay to ensure text remains readable */
+        /* Optional: Add a dark overlay to ensure text remains readable 
         .video-overlay {
             position: fixed;
             top: 0;
@@ -289,7 +289,7 @@
             background: radial-gradient(circle, rgba(0,0,0,0) 30%, var(--bg-color) 80%);
             z-index: -1;
             pointer-events: none;
-        }
+        }*/
         
         /* Ensure the main container has a solid background so the video 
            only shows on the sides, not behind the text */
@@ -311,7 +311,7 @@
         <source src="https://images-assets.nasa.gov/video/Earth%20Views%20from%20the%20International%20Space%20Station/Earth%20Views%20from%20the%20International%20Space%20Station~orig.mp4" type="video/mp4">
         Your browser does not support HTML5 video.
     </video>
-    <div class="video-overlay"></div>
+    <!--<div class="video-overlay"></div>-->
     <button class="theme-toggle" onclick="toggleTheme()">⏾</button>
 
     <div class="container">
