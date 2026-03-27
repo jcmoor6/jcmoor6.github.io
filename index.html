@@ -80,7 +80,6 @@
             color: var(--bg-color) !important;
         }
 
-        /* --- MAP CONTAINER --- */
         .map-container {
             margin-top: 2rem;
             margin-bottom: 15px;
@@ -99,73 +98,6 @@
             border-bottom: 1px solid var(--border-color);
         }
 
-        /* Maps Grid Layout */
-        .maps-grid {
-            display: grid;
-            grid-template-columns: 1fr; /* Stacked on mobile */
-            gap: 3rem;
-            margin-top: 2rem;
-        }
-        
-        @media (min-width: 768px) {
-            .maps-grid {
-                grid-template-columns: 1fr 1fr; /* Two columns on desktop */
-            }
-        }
-        
-        .map-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .map-image {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            transition: transform 0.3s ease;
-            cursor: zoom-in;
-        }
-        
-        .map-image:hover {
-            transform: scale(1.02);
-        }
-        
-        .map-caption {
-            margin-top: 1rem;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            text-align: center;
-            opacity: 0.9;
-        }
-
-        /* Lightbox/Gallery Overlay */
-        .lightbox {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            justify-content: center;
-            align-items: center;
-            cursor: zoom-out;
-        }
-        
-        .lightbox.active {
-            display: flex;
-        }
-        
-        .lightbox img {
-            max-width: 90%;
-            max-height: 90%;
-            border: 2px solid white;
-            border-radius: 4px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
-        }
         .nav-btn {
             background: none;
             border: none;
@@ -198,57 +130,114 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .project-card, .publication-item {
-            padding: 1.5rem 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        /* --- ABOUT LAYOUT (FLEXBOX) --- */
+        /* --- ABOUT LAYOUT --- */
         .about-flex-container {
             display: flex;
-            align-items: center; /* Vertically centers text next to image */
-            gap: 2.5rem; /* Space between image and text */
+            align-items: center;
+            gap: 2.5rem;
             margin-top: 1.5rem;
         }
 
         .about-headshot {
-            width: 230px; /* Adjust size as needed */
+            width: 230px;
             height: 230px;
-            border-radius: 50%; /* Circular image */
-            object-fit: cover; /* Ensures image isn't stretched */
-            border: 3px solid var(--accent-color); /* Matches theme */
-            flex-shrink: 0; /* Prevents image from shrinking */
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-color);
+            flex-shrink: 0;
         }
 
-        /* Mobile responsiveness for About section */
         @media (max-width: 600px) {
             .about-flex-container {
-                flex-direction: column; /* Stacks image on top of text */
+                flex-direction: column;
                 text-align: center;
                 gap: 1.5rem;
             }
         }
 
+        /* --- MAPS GRID --- */
+        .maps-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        
+        @media (min-width: 768px) {
+            .maps-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        .map-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .map-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease;
+            cursor: zoom-in;
+        }
+        
+        .map-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .map-caption {
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            text-align: center;
+            opacity: 0.9;
+        }
+
+        /* --- LIGHTBOX --- */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+        }
+        
+        .lightbox.active {
+            display: flex;
+        }
+        
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border: 2px solid white;
+            border-radius: 4px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+
         .project-links, .publication-links, .resume-actions {
             display: flex;
-            justify-content: center; /* This centers the buttons inside the div */
+            justify-content: center;
             gap: 15px;
             margin: 1.5rem 0;
         }
 
-        /* Resume Styles */
         .resume-section { margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border-color); }
         .resume-section:last-child { border-bottom: none; }
         .resume-section-title { font-size: 1.3rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--accent-color); }
         .resume-item { margin-bottom: 1.8rem; }
         .resume-item-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 1rem; }
-        .resume-date { font-size: 0.9rem; opacity: 0.7; }
-        .resume-institution { font-style: italic; margin-bottom: 0.5rem; opacity: 0.8; }
         .resume-bullets { list-style: none; padding-left: 0; }
         .resume-bullets li { position: relative; padding-left: 1.2rem; margin-bottom: 0.5rem; }
         .resume-bullets li::before { content: '•'; position: absolute; left: 0; color: var(--accent-color); font-weight: bold; }
-        .skill-category { margin-bottom: 0.8rem; }
-        .skill-category strong { color: var(--accent-color); margin-right: 0.5rem; }
 
         .theme-toggle {
             position: fixed;
@@ -262,6 +251,9 @@
             cursor: pointer;
             color: var(--text-color);
             font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .social-links { display: flex; justify-content: center; gap: 2rem; margin-top: 1rem; }
