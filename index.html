@@ -99,6 +99,47 @@
             border-bottom: 1px solid var(--border-color);
         }
 
+        /* Maps Grid Layout */
+        .maps-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Stacked on mobile */
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        
+        @media (min-width: 768px) {
+            .maps-grid {
+                grid-template-columns: 1fr 1fr; /* Two columns on desktop */
+            }
+        }
+        
+        .map-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .map-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease;
+            cursor: zoom-in;
+        }
+        
+        .map-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .map-caption {
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            text-align: center;
+            opacity: 0.9;
+        }
+
         .nav-btn {
             background: none;
             border: none;
@@ -279,6 +320,23 @@
 
         <section id="maps-section" class="content-section">
             <h2 class="section-title">Maps</h2>
+            
+            <div class="maps-grid">
+                <div class="map-item">
+                    <p class="map-caption">
+                        <b>Potential Aquaculture Laboratory Locations in La Concordia, Peru</b>
+                    </p>
+                    <img src="images/Aquaculture_Map.png" alt="Aquaculture Labs in Peru" class="map-image">
+                </div>
+        
+                <div class="map-item">
+                    <p class="map-caption">
+                        <b>Goshawk Nests According to Lease Number in Tongass National Forest</b>
+                    </p>
+                    <img src="images/Tongass_Map.png" alt="Tongass National Forest" class="map-image">
+                </div>
+        
+            </div>
         </section>
 
         <section id="publications-section" class="content-section">
