@@ -73,7 +73,6 @@
             transition: all 0.3s ease;
             background: transparent;
             font-family: inherit;
-            justify-content: center;
         }
 
         .outline-button:hover, .resume-download:hover, .publication-link:hover {
@@ -124,6 +123,13 @@
         .project-card, .publication-item {
             padding: 1.5rem 0;
             border-bottom: 1px solid var(--border-color);
+        }
+
+        .project-links, .publication-links, .resume-actions {
+            display: flex;
+            justify-content: center; /* This centers the buttons inside the div */
+            gap: 15px;
+            margin: 1.5rem 0;
         }
 
         /* Resume Styles */
@@ -201,7 +207,16 @@
                     <a href="https://news.emory.edu/features/2020/07/georgia-coast-atlas/index.html" class="outline-button">News Article</a>
                 </div>
                 <div style="margin-top:2rem;">
-                    <iframe width="100%" height="450" frameborder="0" scrolling="no" src="https://www.arcgis.com/apps/Embed/index.html?webmap=2c5ed3cf2cdc433797b4b9276b998171&extent=-81.3403,31.3184,-81.2456,31.3717&zoom=true&previewImage=false&scale=true&legend=true&basemap_gallery=true&disable_scroll=true&theme=light"></iframe>
+                    <iframe 
+                        width="100%" 
+                        height="350" 
+                        frameborder="0" 
+                        scrolling="no" 
+                        marginheight="0" 
+                        marginwidth="0" 
+                        title="Wolf and Egg Islands Shoreline Change" 
+                        src="https://www.arcgis.com/apps/Embed/index.html?webmap=2c5ed3cf2cdc433797b4b9276b998171&extent=-81.3403,31.3184,-81.2456,31.3717&zoom=true&previewImage=false&scale=true&legend=true&basemap_gallery=true&disable_scroll=true&theme=light">
+                    </iframe>
                 </div>
             </article>
         </section>
