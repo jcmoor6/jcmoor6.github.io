@@ -128,4 +128,153 @@
         }
 
         .project-card {
-            padding: 1.5rem
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .project-description {
+            opacity: 0.8;
+            margin-bottom: 1rem;
+            white-space: pre-wrap; /* Maintains spacing from your doc */
+        }
+
+        .map-container iframe {
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            margin-top: 1rem;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: none;
+            border: 2px solid var(--border-color);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-color);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            color: var(--text-color);
+            text-decoration: none;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">⏾</button>
+
+    <div class="container">
+        <header>
+            <h1>Jessie C. Moore Torres</h1>
+            <p class="subtitle">Jr. Scientist</p>
+            <div class="social-links">
+                <a href="mailto:jcmoor6@gmail.com" class="social-link"><i class="fa-solid fa-envelope"></i> Email</a>
+                <a href="https://linkedin.com/in/jessiemooretorres/" class="social-link"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                <a href="https://github.com/jcmoor6" class="social-link"><i class="fa-brands fa-github"></i> GitHub</a>
+            </div>
+        </header>
+
+        <nav class="main-nav">
+            <button class="nav-btn active" onclick="showSection('about')">About</button>
+            <button class="nav-btn" onclick="showSection('projects')">Projects</button>
+            <button class="nav-btn" onclick="showSection('publications')">Publications</button>
+            <button class="nav-btn" onclick="showSection('resume')">Resume</button>
+        </nav>
+
+        <section id="about-section" class="content-section active">
+            <h2 style="margin-bottom: 1.5rem;">About</h2>
+            <p>
+                Supporting NOAA as a Junior Scientist, I specialize in the processing and 
+                verification of SAR acquisitions over active hurricanes. I bring a strong technical focus 
+                to the role by writing Python scripts to automate analytical processing chains, 
+                while also leveraging ArcGIS Pro to translate raw data into professional-grade 
+                spatial visualizations. 
+            </p>
+        </section>
+
+        <section id="projects-section" class="content-section">
+            <h2 style="margin-bottom: 1.5rem;">Projects</h2>
+            
+            <article class="project-card">
+                <h3 class="project-title">Georgia Coast Atlas: Wolf and Egg Islands</h3>
+                <p class="project-description">
+                    This undergraduate research project was a collaboration with the Emory University Center for Digital Scholarship (ECDS) to obtain data and quantify shoreline change on a Georgia barrier island called Wolf Island. 
+                    This project is featured on the Georgia Coast Atlas website, has been presented at two conferences, and was featured in a news article. Below are the website links:
+                    
+                    Geological Society of America Conference Links:
+                    
+                    Poster Title: Shifting Shorelines on Wolf and Egg Islands, Georgia, USA: A Study of Change Since 1953 Year and Location: April 2018, Knoxville, TN Abstract Link: https://gsa.confex.com/gsa/2018SE/meetingapp.cgi/Paper/312844
+                    Poster Title: Geological, Ecological, and Human Histories of Wolf and Egg Islands (Georgia): Integrating Undergraduate Research with Public Outreach through the Georgia Coast Atlas Year and Location: March 2019, Charleston, SC Abstract Link: https://gsa.confex.com/gsa/2019SE/meetingapp.cgi/Paper/327300
+                </p>
+                
+                <div class="project-links">
+                    <a href="https://georgiacoastatlas.org/places/wolf-island" class="outline-button">Georgia Coast Atlas Website</a>
+                    <a href="https://news.emory.edu/features/2020/07/georgia-coast-atlas/index.html" class="outline-button">News Article</a>
+                </div>
+
+                <div class="map-container">
+                    <iframe width="100%" height="350" frameborder="0" scrolling="no" src="https://www.arcgis.com/apps/Embed/index.html?webmap=2c5ed3cf2cdc433797b4b9276b998171&zoom=true&scale=true&legend=true&theme=light"></iframe>
+                </div>
+            </article>
+
+            <article class="project-card">
+                <h3 class="project-title">Project Name 3</h3>
+                <p class="project-tech">Vue.js, Firebase, CSS</p>
+                <p class="project-description">
+                    Third project description. Show variety in your skills and interests.
+                    Highlight what makes this project unique.
+                </p>
+                <div class="project-links">
+                    <a href="#" class="outline-button">Live Demo</a>
+                    <a href="#" class="outline-button">GitHub</a>
+                </div>
+            </article>
+        </section>
+
+        </div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const button = document.querySelector('.theme-toggle');
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                button.textContent = '⏾';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                button.textContent = '☀';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        function showSection(sectionName) {
+            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(sectionName + '-section').classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('theme') === 'dark') {
+                document.body.setAttribute('data-theme', 'dark');
+                document.querySelector('.theme-toggle').textContent = '☀';
+            }
+        });
+    </script>
+</body>
+</html>
