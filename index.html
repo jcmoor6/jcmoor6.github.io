@@ -14,12 +14,40 @@
             lightbox.classList.add('active');
         }
         
-        // Optional: Close lightbox when 'Esc' key is pressed
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
-                document.getElementById('lightbox').classList.remove('active');
+                const lightbox = document.getElementById('lightbox');
+                if(lightbox) lightbox.classList.remove('active');
             }
         });
+
+        function toggleTheme() {
+            const body = document.body;
+            const btn = document.querySelector('.theme-toggle');
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                btn.textContent = '⏾';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                btn.textContent = '☀';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        function showSection(name, event) {
+            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(name + '-section').classList.add('active');
+            if (event) event.currentTarget.classList.add('active');
+        }
+
+        window.onload = () => {
+            if (localStorage.getItem('theme') === 'dark') {
+                document.body.setAttribute('data-theme', 'dark');
+                document.querySelector('.theme-toggle').textContent = '☀';
+            }
+        };
     </script>
     <style>
         :root {
@@ -362,26 +390,15 @@
 
         <section id="maps-section" class="content-section">
             <h2 class="section-title">Maps</h2>
-            
             <div class="maps-grid">
                 <div class="map-item">
-                    <p class="map-caption">
-                        <b>Potential Aquaculture Laboratory Locations in La Concordia, Peru</b>
-                    </p>
-                    <img src="images/Aquaculture_Map.png" alt="Aquaculture Labs in Peru" class="map-image">
+                    <p class="map-caption"><b>Potential Aquaculture Laboratory Locations in Peru</b></p>
+                    <img src="images/Aquaculture_Map.png" alt="Aquaculture Labs" class="map-image" onclick="openLightbox(this.src)">
                 </div>
-                        
                 <div class="map-item">
-                    <p class="map-caption">
-                        <b>Goshawk Nests According to Lease Number in Tongass National Forest</b>
-                    </p>
-                    <img src="images/Tongass_Map.png" alt="Tongass National Forest" class="map-image">
+                    <p class="map-caption"><b>Goshawk Nests in Tongass National Forest</b></p>
+                    <img src="images/Tongass_Map.png" alt="Tongass National Forest" class="map-image" onclick="openLightbox(this.src)">
                 </div>
-
-                <div id="lightbox" class="lightbox" onclick="this.classList.remove('active')">
-                    <img id="lightbox-img" src="" alt="Enlarged Map">
-                </div>
-        
             </div>
         </section>
 
