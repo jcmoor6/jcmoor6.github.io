@@ -594,11 +594,34 @@
             document.getElementById(name + '-section').classList.add('active');
             if (event) event.currentTarget.classList.add('active');
         }
-
+        
         // Event listeners
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 document.getElementById('lightbox').classList.remove('active');
+            }
+        });
+
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const video = document.getElementById('bg-video');
+            
+            // Ensure the video is muted (required for autoplay)
+            video.muted = true;
+        
+            // Attempt to play
+            const playPromise = video.play();
+        
+            if (playPromise !== undefined) {
+                playPromise.then(_ => {
+                    // Autoplay started!
+                    console.log("ISS Video is orbiting...");
+                }).catch(error => {
+                    // If blocked, we wait for the first user click anywhere on the page
+                    console.log("Autoplay blocked. Waiting for user interaction.");
+                    document.body.addEventListener('click', () => {
+                        video.play();
+                    }, { once: true });
+                });
             }
         });
 
