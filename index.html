@@ -136,6 +136,32 @@
             border-bottom: 1px solid var(--border-color);
         }
 
+        /* --- ABOUT LAYOUT (FLEXBOX) --- */
+        .about-flex-container {
+            display: flex;
+            align-items: center; /* Vertically centers text next to image */
+            gap: 2.5rem; /* Space between image and text */
+            margin-top: 1.5rem;
+        }
+
+        .about-headshot {
+            width: 150px; /* Adjust size as needed */
+            height: 150px;
+            border-radius: 50%; /* Circular image */
+            object-fit: cover; /* Ensures image isn't stretched */
+            border: 3px solid var(--accent-color); /* Matches theme */
+            flex-shrink: 0; /* Prevents image from shrinking */
+        }
+
+        /* Mobile responsiveness for About section */
+        @media (max-width: 600px) {
+            .about-flex-container {
+                flex-direction: column; /* Stacks image on top of text */
+                text-align: center;
+                gap: 1.5rem;
+            }
+        }
+
         .project-links, .publication-links, .resume-actions {
             display: flex;
             justify-content: center; /* This centers the buttons inside the div */
@@ -199,15 +225,20 @@
 
         <section id="about-section" class="content-section active">
             <h2 class="section-title">About</h2>
-            <p style="margin-top:1rem;">
-                Supporting NOAA as a Junior Scientist, I specialize in the processing and 
-                verification of SAR acquisitions over active hurricanes. I bring a strong technical focus 
-                to the role by writing Python scripts to automate analytical processing chains, 
-                while also leveraging ArcGIS Pro to translate raw data into professional-grade 
-                spatial visualizations.
-            </p>
+            <div class="about-flex-container">
+                <img src="your-headshot.jpg" alt="Jessie C. Moore Torres" class="about-headshot">
+                <div class="about-text">
+                    <p>
+                        Supporting NOAA as a Junior Scientist, I specialize in the processing and 
+                        verification of SAR acquisitions over active hurricanes. I bring a strong technical focus 
+                        to the role by writing Python scripts to automate analytical processing chains, 
+                        while also leveraging ArcGIS Pro to translate raw data into professional-grade 
+                        spatial visualizations.
+                    </p>
+                </div>
+            </div>
         </section>
-
+        
         <section id="projects-section" class="content-section">
             <h2 class="section-title">Projects</h2>
             <article class="project-card">
