@@ -80,6 +80,17 @@
             color: var(--bg-color) !important;
         }
 
+        /* --- MAP CONTAINER --- */
+        .map-container {
+            margin-top: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .map-container iframe {
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        
         /* Navigation */
         .main-nav {
             display: flex;
@@ -206,7 +217,7 @@
                     <a href="https://georgiacoastatlas.org/places/wolf-island" class="outline-button">Georgia Coast Atlas Website</a>
                     <a href="https://news.emory.edu/features/2020/07/georgia-coast-atlas/index.html" class="outline-button">News Article</a>
                 </div>
-                <div style="margin-top:2rem;">
+                <div class="map-container">
                     <iframe 
                         width="100%" 
                         height="350" 
