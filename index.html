@@ -284,11 +284,11 @@
         </header>
 
         <nav class="main-nav">
-            <button class="nav-btn active" onclick="showSection('about')">About Me</button>
-            <button class="nav-btn" onclick="showSection('projects')">Projects</button>
-            <button class="nav-btn" onclick="showSection('maps')">Maps</button>
-            <button class="nav-btn" onclick="showSection('publications')">Publications</button>
-            <button class="nav-btn" onclick="showSection('resume')">Resume</button>
+            <button class="nav-btn active" onclick="showSection('about', event)">About Me</button>
+            <button class="nav-btn" onclick="showSection('projects', event)">Projects</button>
+            <button class="nav-btn" onclick="showSection('maps', event)">Maps</button>
+            <button class="nav-btn" onclick="showSection('publications', event)">Publications</button>
+            <button class="nav-btn" onclick="showSection('resume', event)">Resume</button>
         </nav>
 
        <section id="about-section" class="content-section active">
@@ -472,21 +472,18 @@
         </section>
     </div>
 
+    <div id="lightbox" class="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="Enlarged Map">
+    </div>
+
     <script>
+        // Core functionality
         function openLightbox(src) {
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
-            
             lightboxImg.src = src;
             lightbox.classList.add('active');
         }
-        
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                const lightbox = document.getElementById('lightbox');
-                if(lightbox) lightbox.classList.remove('active');
-            }
-        });
 
         function toggleTheme() {
             const body = document.body;
@@ -508,6 +505,13 @@
             document.getElementById(name + '-section').classList.add('active');
             if (event) event.currentTarget.classList.add('active');
         }
+
+        // Event listeners
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.getElementById('lightbox').classList.remove('active');
+            }
+        });
 
         window.onload = () => {
             if (localStorage.getItem('theme') === 'dark') {
