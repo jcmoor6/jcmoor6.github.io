@@ -568,8 +568,6 @@
                 </div>
             </div>
         </section>
-        
-        <button class="theme-toggle" onclick="toggleTheme()">⏾</button>
     </div>
 
     <div id="lightbox" class="lightbox" onclick="this.classList.remove('active')">
@@ -622,12 +620,6 @@
             }
         });
 
-        window.onload = () => {
-            if (localStorage.getItem('theme') === 'dark') {
-                document.body.setAttribute('data-theme', 'dark');
-                document.querySelector('.theme-toggle').textContent = '☀';
-            }
-        };
     </script>
 </body>
 </html>
