@@ -7,14 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
-            --bg-color: #ffffff;
-            --text-color: #333333;
-            --accent-color: #A9A9A9;
-            --border-color: #e0e0e0;
-            --hover-color: #f5f5f5;
-        }
-
-        [data-theme="dark"] {
             --bg-color: #1a1a1a;
             --text-color: #e0e0e0;
             --accent-color: #A9A9A9;
@@ -591,20 +583,6 @@
             const lightboxImg = document.getElementById('lightbox-img');
             lightboxImg.src = src;
             lightbox.classList.add('active');
-        }
-
-        function toggleTheme() {
-            const body = document.body;
-            const btn = document.querySelector('.theme-toggle');
-            if (body.getAttribute('data-theme') === 'dark') {
-                body.removeAttribute('data-theme');
-                btn.textContent = '⏾';
-                localStorage.setItem('theme', 'light');
-            } else {
-                body.setAttribute('data-theme', 'dark');
-                btn.textContent = '☀';
-                localStorage.setItem('theme', 'dark');
-            }
         }
 
         function showSection(name, event) {
